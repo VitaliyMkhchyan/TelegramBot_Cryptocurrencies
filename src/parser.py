@@ -9,7 +9,7 @@ def update_info() -> str:
     response = requests.get(url=URL)
 
     if response.status_code != 200:
-        return "Status code 200!"
+        return f"Status code {response.status_code}"
 
     course = response.text
     chars_to_remove = ["{", "}", '"']
