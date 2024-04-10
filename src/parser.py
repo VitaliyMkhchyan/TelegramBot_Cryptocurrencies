@@ -1,18 +1,21 @@
+from typing import Any
 import requests
 from loguru import logger
+from requests import Response
 
 URL = "https://min-api.cryptocompare.com/data/price?fsym=TONCOIN&tsyms=USD"
 
 
 @logger.catch()
 def update_info() -> str:
-    response = requests.get(url=URL)
+    response: Response = requests.get(url=URL)
 
     if response.status_code != 200:
-        return f"Status code {response.status_code}"
+        logger.critical(f"Status code is {response.status_code}")
+        return f"NoData!"
 
-    course = response.text
-    chars_to_remove = ["{", "}", '"']
+    course: Any = response.text
+    chars_to_remove: list = ["{", "}", '"']
 
     for char in chars_to_remove:
         course = course.replace(char, "")
@@ -23,5 +26,6 @@ def update_info() -> str:
     return course[0] + ": " + str(course[1])
 
 
+# Test
 if __name__ == "__main__":
     print(update_info())

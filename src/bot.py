@@ -1,5 +1,5 @@
 import telebot
-from config import TOKEN, TIME_UPDATE_DB, TIME_UPDATE_USER
+from config import TOKEN, TIME_UPDATE_DB, TIME_UPDATE_USER, LOG_FILE
 from loguru import logger
 from parser import update_info
 from time import sleep
@@ -8,7 +8,7 @@ from threading import Thread
 from datetime import datetime
 
 
-logger.add("./data/debug.log")
+logger.add(LOG_FILE)
 
 bot = telebot.TeleBot(TOKEN)
 logger.info("Staring bot")
@@ -28,6 +28,7 @@ def start(message):
 
 
 def saving_data():
+    """ Сохранение данных в бд каждые 5 мин """
     while True:
         Database(update_info(), str(datetime.now())).save_data()
         sleep(TIME_UPDATE_DB)
