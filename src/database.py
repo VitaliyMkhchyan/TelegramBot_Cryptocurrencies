@@ -28,6 +28,7 @@ class Database:
             logger.error(e)
         finally:
             self.connect.close()
+
         logger.info("The data is saved!")
 
 

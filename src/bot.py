@@ -36,4 +36,5 @@ def saving_data():
 
 Thread(target=saving_data).start()
 
-bot.polling()
+if __name__ == "__main__":
+    bot.polling()
