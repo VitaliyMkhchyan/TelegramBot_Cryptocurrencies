@@ -3,7 +3,7 @@ import requests
 from loguru import logger
 from requests import Response
 
-URL = "https://min-api.cryptocompare.com/data/price?fsym=TONCOIN&tsyms=USD"
+URL: str = "https://min-api.cryptocompare.com/data/price?fsym=TONCOIN&tsyms=USD"
 
 
 @logger.catch()
