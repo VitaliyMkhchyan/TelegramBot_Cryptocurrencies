@@ -1,6 +1,6 @@
 from typing import NoReturn
 import telebot
-from src.config import TOKEN, TIME_UPDATE_DB, TIME_UPDATE_USER, LOG_FILE
+from config import TOKEN, TIME_UPDATE_DB, TIME_UPDATE_USER, LOG_FILE
 from loguru import logger
 from parser import update_info
 from time import sleep
@@ -37,5 +37,5 @@ def saving_data() -> NoReturn:
 Thread(target=saving_data).start()
 
 if __name__ == "__main__":
-    bot.polling()
+    bot.infinity_polling(timeout=10, long_polling_timeout=5)
     logger.info("Stopped bot")
